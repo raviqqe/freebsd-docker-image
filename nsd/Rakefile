@@ -5,5 +5,5 @@ task :build do
 end
 
 task :run => :build do
-  sh %q(sudo docker run -d nsd)
+  sh %q(sudo docker run -p 53:53 -d nsd)
 end
