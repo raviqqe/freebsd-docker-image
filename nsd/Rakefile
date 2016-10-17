@@ -1,9 +1,11 @@
+IMAGE = :nsd
+
 task :default => :build
 
 task :build do
-  sh %q(sudo docker build -t nsd .)
+  sh %Q(sudo docker build -t #{IMAGE} .)
 end
 
 task :run => :build do
-  sh %q(sudo docker run -p 53:53 -p 53:53/udp -d nsd)
+  sh %Q(sudo docker run -p 53:53 -p 53:53/udp -d #{IMAGE})
 end
