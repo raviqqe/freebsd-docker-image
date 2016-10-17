@@ -11,4 +11,4 @@ RUN nsd-control-setup
 ADD nsd.conf $nsd_dir/nsd.conf
 ADD raviqqe.com.zone $nsd_dir/raviqqe.com.zone
 
-CMD service nsd start && /bin/sh
+CMD service nsd start && tail -f /dev/null
