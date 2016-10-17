@@ -7,5 +7,17 @@ task :build do
 end
 
 task :run => :build do
-  sh %Q(sudo docker run -p 53:53 -p 53:53/udp -d #{IMAGE})
+  hostname = [IMAGE, '.', `hostname`.strip].join
+  sh %Q(sudo docker run -d -p 53:53 -p 53:53/udp -h #{hostname} \
+                        --name #{hostname} #{IMAGE})
+end
+
+task :stop do
+  def command subcommand
+   %Q(sudo docker #{subcommand} $(sudo docker ps -a | grep #{IMAGE} \
+                                                    | awk '{print $1}'))
+  end
+
+  sh command(:stop)
+  sh command(:rm)
 end
