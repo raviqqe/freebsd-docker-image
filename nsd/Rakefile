@@ -1,3 +1,3 @@
-require '../ruby/docker'
+require_relative '../ruby/docker'
 
 docker_tasks :nsd, '-p 53:53 -p 53:53/udp', :rm
