@@ -26,7 +26,7 @@ end
 
 def docker_subcommand_on_image subcommand, image, another_grep=:cat
   containers = `sudo docker ps -a | grep -e #{image} | #{another_grep} | \
-                awk '{print $1}'`
+                awk '{print $1}'`.gsub "\n", ' '
   %Q(sudo docker #{subcommand} #{containers}) if containers.strip.length > 0
 end
 
