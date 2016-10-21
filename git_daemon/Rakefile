@@ -1,0 +1,4 @@
+require '../ruby/docker'
+require '../config.rb'
+
+docker_tasks :git, "-p #{GIT_PORT}:80", :rm
